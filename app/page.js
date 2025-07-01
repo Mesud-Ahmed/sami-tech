@@ -62,7 +62,7 @@ export default function HomePage() {
           <li><a href="#" className="hover:text-blue-600 transition">Home</a></li>
           <li><a href="#" className="hover:text-blue-600 transition">Products</a></li>
           <li><a href="#" className="hover:text-blue-600 transition">Contact</a></li>
-          <li><a href="#" className="hover:text-blue-600 transition">Login</a></li>
+          <li><Link href="/admin" className="hover:text-blue-600 transition">Admin</Link></li>
         </ul>
       </nav>
 

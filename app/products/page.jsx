@@ -7,6 +7,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -55,7 +63,23 @@ export default function ProductsPage() {
   const [view, setView] = useState("grid");
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
+    
+
+    <div className=" p-3 flex flex-col md:flex-row min-h-screen bg-gray-50">
+        {/* Breadcrumbs */}
+        <div className="mb-4">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Products</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-white shadow-md rounded-md p-6 mb-4 md:mb-0 md:mr-6">
         <h2 className="text-lg font-semibold mb-4">Filters</h2>
