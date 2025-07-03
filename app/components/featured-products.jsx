@@ -2,15 +2,20 @@
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import {use} from "react"
-
+import { useEffect, useState } from 'react';
 
 
 export default function FeaturedProducts({products}) {
 
-  const featuredProducts =  use(products)
-  console.log("Featured Products:", featuredProducts) 
+    const [featuredProducts, setFeaturedProducts] = useState([]);
 
+    useEffect(() => {
+      fetch('/api/products')
+        .then((res) => res.json())
+        .then((data) => setFeaturedProducts(data));
+    }, []);
+  
+ 
   return (
     <section className="px-6 md:px-16 py-12">
       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">Featured Products</h2>
@@ -18,12 +23,15 @@ export default function FeaturedProducts({products}) {
         {featuredProducts.map((product) => (
           <Card key={product.name} className="rounded-2xl shadow-md hover:shadow-xl transition">
             <CardHeader className="flex flex-col items-center">
-              <Image src={product.imageUrl} alt={product.name} width={180} height={120} className="rounded-xl object-contain mb-2" />
+              <Image src={product.imageUrl} alt={product.name} width={180} height={120} className=" object-contain mb-2" />
               <CardTitle className="text-lg">{product.name}</CardTitle>
               <CardDescription className="text-blue-600 font-semibold text-xl">{product.price}</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">
-              <Button className="w-full rounded-full">Buy Now</Button>
+              <a href={`tel:+251941084897`} className="w-full">
+                <Button className="w-full rounded-full">Call to Buy</Button>
+              </a>
+              
             </CardContent>
           </Card>
         ))}
