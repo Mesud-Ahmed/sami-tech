@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
   output   = "../app/generated/prisma"
@@ -14,20 +13,26 @@ model Laptop {
   name         String
   brand        String
   processor    String
-  ram          Int       
-  storage      Int       
+  ram          String    
+  storage      String    
+  gpu          String?  
+  screenSize   String?   
+  displayType  String?   
+  batteryLife  String?   
+  weight       String?   
+  color        String?   
+  warranty     String?   
   price        Float
   description  String?
-  imageUrl     String?   
+  imageUrl     String?
   createdAt    DateTime  @default(now())
-  
 }
 
 model User {
   id          Int      @id @default(autoincrement())
   name        String
   email       String   @unique
-  password    String   
+  password    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
