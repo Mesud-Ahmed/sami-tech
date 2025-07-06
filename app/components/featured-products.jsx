@@ -23,7 +23,7 @@ export default function FeaturedProducts({products}) {
         {featuredProducts.map((product) => (
           <Card key={product.name} className="rounded-2xl shadow-md hover:shadow-xl transition">
             <CardHeader className="flex flex-col items-center">
-              <Image src={product.imageUrl} alt={product.name} width={180} height={120} className=" object-contain mb-2" />
+              <Image src={product.imageUrls[0]} alt={product.name} width={180} height={120} className=" object-contain mb-2" />
               <CardTitle className="text-lg">{product.name}</CardTitle>
               <CardDescription className="text-blue-600 font-semibold text-xl">{product.price}</CardDescription>
             </CardHeader>

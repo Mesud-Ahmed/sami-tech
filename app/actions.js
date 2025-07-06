@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import prisma from "../lib/prisma";
 export async function createProduct(formData) {
   
@@ -58,6 +59,6 @@ export async function createProduct(formData) {
       imageUrls,
     },
   });
-
+revalidatePath("/admin");
   return { success: true, message: "Product created successfully" };
 }

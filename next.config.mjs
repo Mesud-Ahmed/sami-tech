@@ -5,6 +5,8 @@ const nextConfig = {
       "images-cdn.ubuy.co.in",
       "www.cnet.com",
       "a.img.cnet.com", 
+      'res.cloudinary.com'
+
     ],
   },
 };
