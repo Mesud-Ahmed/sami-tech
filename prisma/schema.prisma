@@ -23,8 +23,8 @@ model Laptop {
   color        String?   
   warranty     String?   
   price        Float
-  description  String?
-  imageUrl     String?
+  description  String
+  imageUrls     String[]
   createdAt    DateTime  @default(now())
 }
 
