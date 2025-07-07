@@ -81,7 +81,7 @@ export default function ProductTable() {
                           width={44}
                           height={44}
                           alt={p.name}
-                          className="rounded object-cover"
+                          className="rounded max-h-14 object-cover"
                         />
                       </td>
                       <td className="p-2 text-center">{p.name}</td>
