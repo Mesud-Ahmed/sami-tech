@@ -20,12 +20,13 @@ export default function ProductTable() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     fetch("/api/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
-        setLoading(false); // turn off loading
+        setLoading(false); 
       })
       .catch((err) => console.error("Failed to fetch products:", err));
   }, []);
@@ -68,7 +69,7 @@ export default function ProductTable() {
                     <th className="p-2">Image</th>
                     <th className="p-2">Name</th>
                     <th className="p-2">Price</th>
-                    <th className="p-2">Actions</th>
+                    <th className="p-2">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -86,9 +87,7 @@ export default function ProductTable() {
                       <td className="p-2 text-center">{p.name}</td>
                       <td className="p-2 text-center">{p.price}</td>
                       <td className="p-2 flex gap-2 justify-center items-center mt-2">
-                        <Button size="sm" variant="outline">
-                          Edit
-                        </Button>
+                        
                         <Button
                           size="sm"
                           variant="destructive"

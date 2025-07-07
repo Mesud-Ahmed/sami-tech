@@ -1,41 +1,68 @@
-"use client"
-import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { useEffect, useState } from 'react';
+"use client";
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
+export default function FeaturedProducts() {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  // add a loading state
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setFeaturedProducts(data);
+        setLoading(false);
+      });
+  }, []);
 
-export default function FeaturedProducts({products}) {
+  if (loading) {
+    return (
+      <div className="flex justify-center py-10">
+        <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
-    const [featuredProducts, setFeaturedProducts] = useState([]);
-
-    useEffect(() => {
-      fetch('/api/products')
-        .then((res) => res.json())
-        .then((data) => setFeaturedProducts(data));
-    }, []);
-  
- 
   return (
     <section className="px-6 md:px-16 py-12">
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">Featured Products</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+        Featured Products
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {featuredProducts.map((product) => (
-          <Card key={product.name} className="rounded-2xl shadow-md hover:shadow-xl transition">
+          <Card
+            key={product.name}
+            className="rounded-2xl shadow-md hover:shadow-xl transition"
+          >
             <CardHeader className="flex flex-col items-center">
-              <Image src={product.imageUrls[0]} alt={product.name} width={180} height={120} className=" object-contain mb-2" />
+              <Image
+                src={product.imageUrls[0]}
+                alt={product.name}
+                width={180}
+                height={120}
+                className=" object-contain mb-2"
+              />
               <CardTitle className="text-lg">{product.name}</CardTitle>
-              <CardDescription className="text-blue-600 font-semibold text-xl">{product.price}</CardDescription>
+              <CardDescription className="text-blue-600 font-semibold text-xl">
+                {product.price}
+              </CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">
               <a href={`tel:+251941084897`} className="w-full">
-                <Button className="w-full rounded-full">Call to Buy</Button>
+                <Button className="w-full rounded-full cursor-pointer">Call to Buy</Button>
               </a>
-              
             </CardContent>
           </Card>
         ))}
       </div>
     </section>
-  )
+  );
 }
