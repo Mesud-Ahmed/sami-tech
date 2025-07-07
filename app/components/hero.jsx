@@ -14,7 +14,7 @@ export default function Hero() {
           Shop the latest and greatest laptops for work, play, and everything in between.
         </p>
         <Link href="/products" className="inline-block">
-          <Button className="rounded-full px-8 py-4 text-lg shadow-lg">See all Laptops</Button>
+          <Button className="rounded-full px-8 py-4 text-lg shadow-lg cursor-pointer">See all Laptops</Button>
         </Link>
       </div>
       <div className="flex-1 flex justify-center">
