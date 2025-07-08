@@ -1,26 +1,19 @@
-"use client";
 
-import { useState } from "react";
-import Sidebar from "@/components/sidebar";
-import ProductTable from "@/components/productTable";
-import AddProductForm from "@/components/addProductForm";
+import { cookies } from "next/headers";
+import { decrypt } from "../lib/session";
+import { redirect } from "next/navigation";
+import ClientAdminPanel from "../components/ClientAdminPanel";
 
-export default function AdminPanel() {
-  const [active, setActive] = useState("products");
+export default async function AdminPanel() {
+  const cookie = cookies().get("session")?.value;
+  if (!cookie) redirect("/login");
+
+  const session = await decrypt(cookie);
+  if (!session || !session.userId) {
+    redirect("/login");
+  }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <div className="flex-1 flex flex-col">
-        <header className="bg-white shadow px-6 py-4 flex items-center justify-between">
-          <span className="text-lg font-semibold">Welcome, Admin!</span>
-        </header>
-        <Sidebar active={active} setActive={setActive} />
-
-        <main className="flex-1 p-6">
-          {active === "products" && <ProductTable />}
-          {active === "add" && <AddProductForm />}
-        </main>
-      </div>
-    </div>
+    <ClientAdminPanel />
   );
 }

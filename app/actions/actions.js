@@ -1,8 +1,11 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import prisma from "../lib/prisma";
+import prisma from "../../lib/prisma";
+import bcrypt from "bcrypt";
+import { createSession } from "../lib/session";
+import { redirect } from "next/navigation";
+
 export async function createProduct(formData) {
-  
   const requiredFields = [
     "name",
     "price",
@@ -59,6 +62,23 @@ export async function createProduct(formData) {
       imageUrls,
     },
   });
-revalidatePath("/admin");
+  revalidatePath("/admin");
   return { success: true, message: "Product created successfully" };
+}
+
+
+export async function login(_state, formData) {
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  
+  const user = await prisma.user.findUnique({ where: { email } });
+
+ if (!user || !(await bcrypt.compare(password, user.password))) {
+    return { error: "Incorrect email or password." };
+  }
+
+  
+  await createSession(user.id);
+  redirect("/admin");
 }

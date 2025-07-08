@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import { useState, useTransition } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createProduct } from '../actions';
+import { createProduct } from "../actions/actions";
 import {
   Select,
   SelectTrigger,
@@ -61,25 +61,39 @@ export default function AddProductForm() {
           <h3 className="text-xl font-bold mb-4">Add Product</h3>
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-1.5">
-              <Label htmlFor="name">Name <span className="text-red-500">*</span></Label>
+              <Label htmlFor="name">
+                Name <span className="text-red-500">*</span>
+              </Label>
               <Input id="name" name="name" required placeholder="Laptop name" />
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="price">Price (in birr) <span className="text-red-500">*</span></Label>
-              <Input id="price" name="price" type="number" required placeholder="e.g. 80000" />
+              <Label htmlFor="price">
+                Price (in birr) <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="price"
+                name="price"
+                type="number"
+                required
+                placeholder="e.g. 80000"
+              />
             </div>
 
             {/* Brand Select */}
             <div className="space-y-1.5">
-              <Label>Brand <span className="text-red-500">*</span></Label>
+              <Label>
+                Brand <span className="text-red-500">*</span>
+              </Label>
               <Select value={brand} onValueChange={setBrand}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select brand" />
                 </SelectTrigger>
                 <SelectContent>
                   {brands.map((b) => (
-                    <SelectItem key={b} value={b}>{b}</SelectItem>
+                    <SelectItem key={b} value={b}>
+                      {b}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -88,14 +102,18 @@ export default function AddProductForm() {
 
             {/* Processor Select */}
             <div className="space-y-1.5">
-              <Label>Processor <span className="text-red-500">*</span></Label>
+              <Label>
+                Processor <span className="text-red-500">*</span>
+              </Label>
               <Select value={processor} onValueChange={setProcessor}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select processor" />
                 </SelectTrigger>
                 <SelectContent>
                   {processors.map((p) => (
-                    <SelectItem key={p} value={p}>{p}</SelectItem>
+                    <SelectItem key={p} value={p}>
+                      {p}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -104,14 +122,18 @@ export default function AddProductForm() {
 
             {/* RAM Select */}
             <div className="space-y-1.5">
-              <Label>RAM <span className="text-red-500">*</span></Label>
+              <Label>
+                RAM <span className="text-red-500">*</span>
+              </Label>
               <Select value={ram} onValueChange={setRam}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select RAM" />
                 </SelectTrigger>
                 <SelectContent>
                   {rams.map((r) => (
-                    <SelectItem key={r} value={r}>{r}</SelectItem>
+                    <SelectItem key={r} value={r}>
+                      {r}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -120,14 +142,18 @@ export default function AddProductForm() {
 
             {/* Storage Select */}
             <div className="space-y-1.5">
-              <Label>Storage <span className="text-red-500">*</span></Label>
+              <Label>
+                Storage <span className="text-red-500">*</span>
+              </Label>
               <Select value={storage} onValueChange={setStorage}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select storage" />
                 </SelectTrigger>
                 <SelectContent>
                   {storages.map((s) => (
-                    <SelectItem key={s} value={s}>{s}</SelectItem>
+                    <SelectItem key={s} value={s}>
+                      {s}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -140,15 +166,27 @@ export default function AddProductForm() {
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="screenSize">Screen Size</Label>
-              <Input id="screenSize" name="screenSize" placeholder="e.g. 15.6 inch" />
+              <Input
+                id="screenSize"
+                name="screenSize"
+                placeholder="e.g. 15.6 inch"
+              />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="displayType">Display Type</Label>
-              <Input id="displayType" name="displayType" placeholder="e.g. Full HD IPS" />
+              <Input
+                id="displayType"
+                name="displayType"
+                placeholder="e.g. Full HD IPS"
+              />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="batteryLife">Battery Life</Label>
-              <Input id="batteryLife" name="batteryLife" placeholder="e.g. 10 hours" />
+              <Input
+                id="batteryLife"
+                name="batteryLife"
+                placeholder="e.g. 10 hours"
+              />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="weight">Weight</Label>
@@ -167,8 +205,15 @@ export default function AddProductForm() {
             <UploadImages />
 
             <div className="space-y-1.5">
-              <Label htmlFor="desc">Description <span className="text-red-500">*</span></Label>
-              <Textarea id="desc" name="desc" required placeholder="Product description" />
+              <Label htmlFor="desc">
+                Description <span className="text-red-500">*</span>
+              </Label>
+              <Textarea
+                id="desc"
+                name="desc"
+                required
+                placeholder="Product description"
+              />
             </div>
 
             <Button type="submit" className="w-full mt-2" disabled={isPending}>
