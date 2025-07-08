@@ -1,31 +1,19 @@
+// app/components/Navbar.jsx
+import { cookies } from "next/headers";
+import { decrypt } from "../lib/session";
+import NavbarClient from './navbarClient'
 
-"use client";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+export default async function Navbar() {
 
-export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const cookieStore = await cookies(); 
+  const session = cookieStore.get("session")?.value;
+ 
+  let loggedIn = false;
 
-  useEffect(() => {
-    // simple check for cookie
-    setIsLoggedIn(document.cookie.includes("session"));
-  }, []);
+  if (session) {
+    const data = await decrypt(session);
+    loggedIn = !!data?.userId;
+  }
 
-  return (
-    <nav >
-      <ul className="flex gap-4">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/products">Products</Link></li>
-        <li><Link href="/contact">Contact</Link></li>
-        {isLoggedIn ? (
-          
-            <li><Link href="/admin">Admin</Link></li>
-            
-          
-        ) : (
-          <li><Link href="/login">Login</Link></li>
-        )}
-      </ul>
-    </nav>
-  );
+  return <NavbarClient loggedIn={loggedIn} />;
 }

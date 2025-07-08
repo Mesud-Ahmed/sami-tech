@@ -14,14 +14,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+
 import {
   Select,
   SelectContent,
@@ -79,22 +72,8 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="p-3 flex flex-col md:flex-row min-h-screen bg-gray-50">
-      {/* Breadcrumbs */}
-      <div className="mb-4">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Products</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
-      {/* Sidebar */}
+    <div className="p-3 flex flex-col md:flex-row min-h-screen bg-gray-50 mt-9">
+      
       <aside className="w-full mt-7 md:w-64 bg-white shadow-md rounded-md p-6 mb-4 md:mb-0 md:mr-6">
         <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
@@ -222,7 +201,7 @@ export default function ProductsPage() {
       </aside>
       {/* Main Content */}
       <main className="flex-1">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4 md:mt-6">
           <h1 className="text-2xl font-bold">Laptops</h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-500">View:</span>
@@ -273,7 +252,7 @@ export default function ProductsPage() {
                       {product.name}
                     </h3>
                     <div className="text-primary font-bold text-xl mb-2">
-                      ${product.price}
+                      Br {product.price}
                     </div>
                     <div className="text-sm text-gray-600 mb-4">
                       {product.specs}
@@ -283,7 +262,7 @@ export default function ProductsPage() {
                         setSelectedLaptop(product);
                         setIsDialogOpen(true);
                       }}
-                      className="mt-auto w-full cursor-pointer"
+                      className="mt-auto w-full cursor-pointer max-w-[200px] "
                     >
                       See Details
                     </Button>
@@ -294,13 +273,15 @@ export default function ProductsPage() {
                   key={product.id}
                   className="flex flex-row items-center shadow-sm hover:shadow-lg transition-shadow duration-200"
                 >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-32 h-32 object-cover rounded-l-md"
-                  />
+                  <Image
+                      src={product.imageUrls[0]}
+                      alt={product.name}
+                      width={300}
+                      height={200}
+                      className=""
+                    />
                   <CardContent className="flex flex-col flex-1 p-4">
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-col justify-between items-center">
                       <h3 className="font-semibold text-lg">{product.name}</h3>
                       <div className="text-primary font-bold text-xl">
                         ${product.price}
@@ -314,7 +295,7 @@ export default function ProductsPage() {
                         setSelectedLaptop(product);
                         setIsDialogOpen(true);
                       }}
-                      className="mt-auto w-full cursor-pointer"
+                      className="mt-auto w-full cursor-pointer max-w-[200px] md:mx-auto"
                     >
                       See Details
                     </Button>

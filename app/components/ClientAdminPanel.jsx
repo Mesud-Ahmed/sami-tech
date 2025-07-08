@@ -9,6 +9,7 @@ export default function ClientAdminPanel() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+        
       <div className="flex-1 flex flex-col">
         <header className="bg-white shadow px-6 py-4 flex items-center justify-between">
           <span className="text-lg font-semibold">Welcome, Admin!</span>

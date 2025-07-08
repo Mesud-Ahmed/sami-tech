@@ -5,7 +5,10 @@ import { redirect } from "next/navigation";
 import ClientAdminPanel from "../components/ClientAdminPanel";
 
 export default async function AdminPanel() {
-  const cookie = cookies().get("session")?.value;
+  
+  const cookieStore = await cookies(); 
+  const cookie = cookieStore.get("session")?.value;
+
   if (!cookie) redirect("/login");
 
   const session = await decrypt(cookie);

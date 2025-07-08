@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   return (
-    <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12 md:py-20 gap-10">
+    <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12 md:py-20 gap-10 mt-6">
       <div className="flex-1">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
           Discover Your Next <span className="text-blue-600">Laptop</span>
